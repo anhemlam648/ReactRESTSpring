@@ -1,8 +1,8 @@
 
 import styled from 'styled-components';
-import Home from './Home';
 import HeaderUser from './partical/Headeruser';
 import FooterUser from './partical/Footeruser';
+import TaskList from './TaskList';
 
 // import FormLogin from './FormLogin';
 const ContentContainer = styled.div`
@@ -10,16 +10,16 @@ const ContentContainer = styled.div`
   margin-top: -280px;
 `;
 
-const HomeUser = () => {
+const HomeTaskList = () => {
   return (
     <div>
       <HeaderUser />
       <ContentContainer>
-        <Home />
+        <TaskList />
       </ContentContainer>
       <FooterUser />
     </div>
   );
 };
 
-export default HomeUser;
+export default HomeTaskList;

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import LoginUser from './LoginUser';
 const ContentContainer = styled.div`
   padding: 20px;
-  margin-top: 250px;
+  margin-top: 50px;
   margin-left: 550px;
   justify-content: center;
   align-items: center;

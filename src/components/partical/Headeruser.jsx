@@ -6,7 +6,7 @@ const HeaderContainer = styled.div`
   color: #fff; /* Màu chữ */
   padding: 10px; /* Khoảng cách từ viền */
   text-align: left; /* Căn giữa nội dung */
-  font-size: 9px; /* Đặt kích thước chữ là 16px */
+  font-size: 10px; /* Đặt kích thước chữ là 16px */
   position: fixed; /* Sử dụng vị trí cố định */
   top: 0; /* Đặt top về 0 để header nằm ở trên cùng */
   width: 100%; /* Chiều rộng 100% */
@@ -18,7 +18,7 @@ const NavContainer = styled.nav`
     list-style: none;
     padding: 0;
     margin: 0;
-    font-size: 10px;
+    font-size: 15px;
     display: flex;
     justify-content: center; /* Canh giữa các liên kết */
   }
@@ -32,14 +32,23 @@ const HeaderUser = () => {
   return (
     <HeaderContainer>
       <h1>Ứng dụng quản lý task</h1>
-      <li style={{ marginLeft: '1400px', marginTop: '-40px' }}><Link to='/login'>Đăng Nhập</Link></li>
+      <li style={{ marginLeft: '1400px', marginTop: '-40px', fontSize: '15px' }}><Link to='/login'>Đăng Nhập</Link></li>
       <NavContainer>
         <ul>
           <li>
-            <Link to='/home'>Trang chủ</Link>
+            <Link to='/'>Trang chủ</Link>
           </li>
           <li>
-            <Link to='/tasks'>Task</Link>
+            <Link to='/task'>Trang Task</Link>
+          </li>
+          <li>
+            <Link to='/detailtask'>Trang Theo Dõi Task</Link>
+          </li>
+          <li>
+            <Link to='/listuser'>Trang Danh Sách User</Link>
+          </li>
+          <li>
+            <Link to='/contact'>Trang Liên Hệ</Link>
           </li>
         </ul>
       </NavContainer>

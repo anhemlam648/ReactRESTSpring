@@ -1,6 +1,6 @@
 
 import styled from 'styled-components';
-import Home from './Home';
+import HomeContact from './HomeContact';
 import HeaderUser from './partical/Headeruser';
 import FooterUser from './partical/Footeruser';
 
@@ -10,16 +10,16 @@ const ContentContainer = styled.div`
   margin-top: -280px;
 `;
 
-const HomeUser = () => {
+const Content = () => {
   return (
     <div>
       <HeaderUser />
       <ContentContainer>
-        <Home />
+        <HomeContact />
       </ContentContainer>
       <FooterUser />
     </div>
   );
 };
 
-export default HomeUser;
+export default Content;
