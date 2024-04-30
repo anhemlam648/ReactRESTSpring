@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import { Routes, Route } from 'react-router-dom';
 import TaskList from './TaskList';
 import Home from './Home';
+import Login from './Login';
+// import FormLogin from './FormLogin';
 const ContentContainer = styled.div`
   padding: 20px;
   margin-top: -280px;
@@ -15,8 +17,9 @@ const HomeUser = () => {
       <Header />
       <ContentContainer>
         <Routes>
-          <Route path='/tasks' element={<TaskList />} />
-          <Route path='/home' element={<Home />} />
+        <Route path='/home' element={<Home />} />
+        <Route path='/login' element={<Login  />} />
+        <Route path='/tasks' element={<TaskList />} />
         </Routes>
       </ContentContainer>
       <Footer />
