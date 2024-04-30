@@ -3,7 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 
 const TaskListContainer = styled.div`
-    margin-top: -10px; /* Giảm margin top xuống để tránh che phủ header */
+margin-top: 50px;
 `;
 
 const Table = styled.table`
