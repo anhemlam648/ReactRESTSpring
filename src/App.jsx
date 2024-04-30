@@ -1,9 +1,10 @@
 
-import HomePage from './components/HomePage'; // Import HomePage component
+// import HomePage from './components/HomePage'; // Import HomePage component
+import HomeUser from './components/HomeUser';
 
 function App() {
   return (
-      <HomePage />
+      <HomeUser />
   );
 }
 

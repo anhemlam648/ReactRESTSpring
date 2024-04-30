@@ -7,7 +7,6 @@ const ContentContainer = styled.div`
   margin-top: -280px;
 `;
 
-
 const HomePage = () => {
   return (
     <div>
