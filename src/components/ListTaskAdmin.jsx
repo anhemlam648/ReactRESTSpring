@@ -7,7 +7,7 @@ const ContentContainer = styled.div`
   margin-top: -280px;
 `;
 
-const HomePage = () => {
+const ListTaskAdmin = () => {
   return (
     <div>
       <Header />
@@ -21,4 +21,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default ListTaskAdmin;

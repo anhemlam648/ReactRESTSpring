@@ -4,6 +4,8 @@ import HomeUser from './components/HomeUser';
 import Login from './components/Login';
 import HomeTaskList from './components/HomeTaskList';
 import Contact from './components/Contact';
+import HomePage from './components/HomePage';
+import ListTaskAdmin from './components/ListTaskAdmin';
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Route path="/detailtask" element={<HomeUser />} />
         <Route path="/listuser" element={<HomeUser />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/admin" element={<HomePage />} />
+        <Route path="/listtaskadmin" element={<ListTaskAdmin />} />
       </Routes>
     </Router>
   );
