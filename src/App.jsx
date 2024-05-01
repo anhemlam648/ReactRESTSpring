@@ -6,6 +6,9 @@ import HomeTaskList from './components/HomeTaskList';
 import Contact from './components/Contact';
 import HomePage from './components/HomePage';
 import ListTaskAdmin from './components/ListTaskAdmin';
+import ListUserAdmin from './components/ListUserAdmin';
+import ListCategoryAdmin from './components/ListCategoryAdmin';
+import ContactAdmin from './components/ContactAdmin';
 
 function App() {
   return (
@@ -19,6 +22,9 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/admin" element={<HomePage />} />
         <Route path="/listtaskadmin" element={<ListTaskAdmin />} />
+        <Route path="/listuseradmin" element={<ListUserAdmin />} />
+        <Route path="/listcategoryadmin" element={<ListCategoryAdmin />} />
+        <Route path="/contactadmin" element={<ContactAdmin />} />
       </Routes>
     </Router>
   );

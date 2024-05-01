@@ -38,13 +38,13 @@ const Header = () => {
             <Link to='/listtaskadmin'>Danh sách Task</Link>
           </li>
           <li>
-            <Link to='/admin'>Trang loại Task</Link>
+            <Link to='/listcategoryadmin'>Trang loại Task</Link>
           </li>
           <li>
-            <Link to='/admin'>Trang danh sách User</Link>
+            <Link to='/listuseradmin'>Trang danh sách User</Link>
           </li>
           <li>
-            <Link to='/admin'>Trang Liên Hệ</Link>
+            <Link to='/contactadmin'>Trang Liên Hệ</Link>
           </li>
         </ul>
       </NavContainer>
