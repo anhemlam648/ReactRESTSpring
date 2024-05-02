@@ -3,6 +3,8 @@ package com.example.apispring.controller;
 import com.example.apispring.dto.TaskDto;
 import com.example.apispring.service.Impl.TaskServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +23,13 @@ public class TaskController {
 
     @GetMapping("/list")
     @ResponseBody
-    public List<TaskDto> getAllTasks() {
+    public ResponseEntity<List<TaskDto>> getAllTasks() {
         List<TaskDto> taskDtos = this.taskServiceimpl.getAllTasks();
-        return taskDtos;
+        if (taskDtos != null) {
+            return ResponseEntity.ok(taskDtos);
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(taskDtos) ;
+        }
     }
+
 }
