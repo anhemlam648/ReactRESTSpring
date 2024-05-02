@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,6 +18,7 @@ public class TaskController {
     @Autowired
     private TaskServiceImpl taskServiceimpl;
 
+
     @GetMapping("/list")
     @ResponseBody
     public ResponseEntity<List<TaskDto>> getAllTasks() {
@@ -30,6 +28,17 @@ public class TaskController {
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(taskDtos) ;
         }
+    }
+
+    @PostMapping("/add")
+    @ResponseBody
+    public ResponseEntity createTask(@RequestBody() TaskDto taskDto) {
+        boolean isSuccess = this.taskServiceimpl.createTaskDto(taskDto);
+        System.out.println("GỌI " + isSuccess);
+        if (isSuccess) {
+            return ResponseEntity.ok(isSuccess);
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(isSuccess) ;
     }
 
 }

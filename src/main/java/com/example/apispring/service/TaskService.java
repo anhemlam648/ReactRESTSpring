@@ -8,7 +8,7 @@ import java.util.List;
 
 @Service
 public interface TaskService {
-    TaskDto createTaskDto (TaskDto taskDto);
+//    TaskDto createTaskDto (TaskDto taskDto);
 //    List<TaskDto> getAllTasks(TaskDto taskDto);
-
+    boolean createTaskDto (TaskDto taskDto);
 }

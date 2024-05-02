@@ -21,10 +21,11 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public TaskDto createTaskDto(TaskDto taskDto) {
+    public boolean createTaskDto(TaskDto taskDto) {
         Task task = TaskMapper.mapToTask(taskDto);
         Task savedTask = taskRepository.save(task);
-        return TaskMapper.mapToTaskDto(savedTask);
+//        return TaskMapper.mapToTaskDto(savedTask);
+        return savedTask != null;
     }
 
     public List<TaskDto> getAllTasks() {
