@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const TaskListContainer = styled.div`
     margin-top: 40px;
@@ -27,7 +28,7 @@ const Td = styled.td`
 
 const TaskList = () => {
     const [tasks, setTasks] = useState([]);
-
+    const navigator = useNavigate()
     useEffect(() => {
         axios.get('http://localhost:8080/tasks/list')
             .then(response => {
@@ -37,9 +38,15 @@ const TaskList = () => {
                 console.error('Lỗi khi lấy danh sách task:', error);
             });
     }, []);
-
+    function addnewTask(){
+        navigator('/addtask') 
+        
+    }
     return (
         <TaskListContainer>
+            <div style={{marginBottom: '20px'}}>
+                <button className="addtotask" onClick={addnewTask}>Add Task</button>
+            </div>
             <Table>
                 <thead>
                     <tr>

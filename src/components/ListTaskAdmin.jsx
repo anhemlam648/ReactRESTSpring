@@ -2,22 +2,28 @@ import Header from './partical/Header';
 import Footer from './partical/Footer';
 import styled from 'styled-components';
 import TaskList from './TaskList';
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 6000vh;
+`;
+
 const ContentContainer = styled.div`
+  flex-grow: 1;
   padding: 20px;
-  margin-top: -250px;
+  margin-top: 80px;
 `;
 
 const ListTaskAdmin = () => {
   return (
-    <div>
+    <Container>
       <Header />
       <ContentContainer>
-        <h2>Trang chính</h2>
-        <p>Xin chào! Đây là trang chính ứng dụng quản lý task.</p>
         <TaskList />
       </ContentContainer>
       <Footer />
-    </div>
+    </Container>
   );
 };
 

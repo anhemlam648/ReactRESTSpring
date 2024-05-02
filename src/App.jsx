@@ -9,7 +9,7 @@ import ListTaskAdmin from './components/ListTaskAdmin';
 import ListUserAdmin from './components/ListUserAdmin';
 import ListCategoryAdmin from './components/ListCategoryAdmin';
 import ContactAdmin from './components/ContactAdmin';
-
+import AddTask from './components/AddTask'
 function App() {
   return (
     <Router>
@@ -25,6 +25,7 @@ function App() {
         <Route path="/listuseradmin" element={<ListUserAdmin />} />
         <Route path="/listcategoryadmin" element={<ListCategoryAdmin />} />
         <Route path="/contactadmin" element={<ContactAdmin />} />
+        <Route path="/addtask" element={<AddTask />} />
       </Routes>
     </Router>
   );
