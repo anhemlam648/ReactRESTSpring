@@ -2,7 +2,7 @@
 import styled from 'styled-components';
 import HeaderUser from './partical/Headeruser';
 import FooterUser from './partical/Footeruser';
-import TaskList from './TaskList';
+import TaskListUser from './TaskListUser';
 
 // import FormLogin from './FormLogin';
 const ContentContainer = styled.div`
@@ -15,7 +15,7 @@ const HomeTaskList = () => {
     <div>
       <HeaderUser />
       <ContentContainer>
-        <TaskList />
+        <TaskListUser />
       </ContentContainer>
       <FooterUser />
     </div>

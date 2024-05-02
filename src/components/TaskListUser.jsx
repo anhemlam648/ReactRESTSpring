@@ -49,10 +49,6 @@ const TaskList = () => {
                         <Th>Status</Th>
                         <Th>Start Time</Th>
                         <Th>Deadline</Th>
-                        <Th>Category </Th>
-                        <Th>Creator </Th>
-                        <Th>Created</Th>
-                        <Th>Updated</Th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,10 +60,6 @@ const TaskList = () => {
                             <Td>{task.status}</Td>
                             <Td>{task.startTime}</Td>
                             <Td>{task.deadline}</Td>
-                            <Td>{task.categoryId}</Td>
-                            <Td>{task.creatorId}</Td>
-                            <Td>{task.createdAt}</Td>
-                            <Td>{task.updatedAt}</Td>
                         </tr>
                     ))}
                 </tbody>
