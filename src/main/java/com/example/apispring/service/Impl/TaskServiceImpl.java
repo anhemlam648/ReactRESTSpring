@@ -1,9 +1,13 @@
 package com.example.apispring.service.Impl;
 
 import com.example.apispring.dto.TaskDto;
+import com.example.apispring.entity.Category;
 import com.example.apispring.entity.Task;
+import com.example.apispring.entity.User;
 import com.example.apispring.mapper.TaskMapper;
+import com.example.apispring.repository.CategoryRepository;
 import com.example.apispring.repository.TaskRepository;
+import com.example.apispring.repository.UserRepository;
 import com.example.apispring.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +27,16 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public boolean createTaskDto(TaskDto taskDto) {
         Task task = TaskMapper.mapToTask(taskDto);
+//        if (taskDto.getCategoryId() != null) {
+//            Category category = new Category();
+//            category.setCategoryId(taskDto.getCategoryId());
+//            task.setCategory(category);
+//        }
+//        if (taskDto.getCreatorId() != null) {
+//            User user = new User();
+//            user.setUserId(taskDto.getCreatorId());
+//            task.setCreator(user);
+//        }
         Task savedTask = taskRepository.save(task);
 //        return TaskMapper.mapToTaskDto(savedTask);
         return savedTask != null;
