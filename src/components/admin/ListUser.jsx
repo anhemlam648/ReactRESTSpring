@@ -30,12 +30,12 @@ const UserList = () => {
     const [users, setUser] = useState([]);
     // const navigator = useNavigate()
     useEffect(() => {
-        axios.get('http://localhost:8080/user/list')
+        axios.get('http://localhost:8080/user/list',{ timeout: 5000 })
             .then(response => {
                 setUser(response.data);
             })
             .catch(error => {
-                console.error('Lỗi khi lấy danh sách task:', error);
+                console.error('Lỗi khi lấy danh sách user:', error);
             });
     }, []);
     return (

@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import moment from 'moment';
 import styled from 'styled-components';
+// import PropTypes from 'prop-types'; // Thêm import PropTypes
 import { Link } from "react-router-dom";
+import SelectField from "./SelectField";
+
 const Container = styled.div`
   position: relative; 
   margin-left: 550px;
@@ -10,7 +13,7 @@ const Container = styled.div`
 
 const ContentContainer = styled.div`
   padding: 20px;
-  margin-top: -100px;
+  margin-top: 90px;
   z-index: 1; 
 `;
 
@@ -69,6 +72,30 @@ const AddTask = () => {
   const [deadline, setDeadline] = useState('');
   const [createdAt, setCreatedAt] = useState('');
   const [updatedAt, setUpdatedAt] = useState('');
+  const [categoryId, setCategoryId] = useState('');
+  const [creatorId, setCreatorId] = useState('');
+  const [categories, setCategories] = useState([]);
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    // call api categories 
+    axios.get('http://localhost:8080/category/list',{ timeout: 5000 })
+      .then(response => {
+        setCategories(response.data);
+      })
+      .catch(error => {
+        console.error('lỗi lấy danh sách category:', error);
+      });
+      // call api user
+      axios.get('http://localhost:8080/user/list',{ timeout: 5000 })
+      .then(response => {
+        setUsers(response.data);
+      })
+      .catch(error => {
+        console.error('Lỗi lấy danh sách user:', error);
+      });
+      
+  }, []);
 
   const handleTaskNameChange = (e) => {
     setTaskName(e.target.value);
@@ -97,6 +124,7 @@ const AddTask = () => {
   const handleUpdatedAtChange = (e) => {
     setUpdatedAt(e.target.value);
   };
+
   const checkEmptyFields = () => {
     if (!taskName || !description || !status || !startTime || !deadline || !createdAt || !updatedAt) {
       alert('Vui lòng điền đầy đủ thông tin');
@@ -110,9 +138,11 @@ const AddTask = () => {
     const formattedDeadline = moment(deadline).format('YYYY-MM-DDTHH:mm:ss');
     const formattedCreatedAt = moment(createdAt).format('YYYY-MM-DDTHH:mm:ss');
     const formattedUpdatedAt = moment(updatedAt).format('YYYY-MM-DDTHH:mm:ss');
+    
     if (!checkEmptyFields()) {
       return;
     }
+  
     axios.post('http://localhost:8080/tasks/add', {
       taskName,
       description,
@@ -120,7 +150,9 @@ const AddTask = () => {
       startTime: formattedStartTime,
       deadline: formattedDeadline,
       createdAt: formattedCreatedAt,
-      updatedAt: formattedUpdatedAt
+      updatedAt: formattedUpdatedAt,
+      categoryId, 
+      creatorId
     })
     .then(response => { 
       console.log('Đã gửi dữ liệu:', response.data);
@@ -156,6 +188,52 @@ const AddTask = () => {
               <label htmlFor="deadline">Deadline:</label>
               <InputField type="datetime-local" id="deadline" value={deadline} onChange={handleDeadlineChange} required/>
             </div>
+            {/* <div>
+            <label htmlFor="category">Category:</label>
+            <SelectField
+                id="categoryId"
+                value={String(categoryId)}
+                onChange={(e) => setCategoryId(e.target.value)}
+                // onChange={(e) => {
+                //   // const value = setCategoryId(e.target.value);
+                //   // // if (!isNaN(value)) { 
+                //   //   setCategoryId(value);
+                //   // // }
+                // }}
+                required
+                options={categories.map(category => ({
+                  value: String(category.categoryId),
+                  label: category.categoryName || "" 
+                }))} 
+              />
+            </div> */}
+            {/* <div>
+            <label htmlFor="creator">Creator:</label>
+            <SelectField
+            id="creatorId"
+            value={String(creatorId)}
+            onChange={(e) => setCreatorId(e.target.value)}
+            // onChange={(e) => {
+            //   const value = BigInt(e.target.value);
+            //   // if (!isNaN(value)) { 
+            //     setCreatorId(value);
+              
+            // }}
+            required
+            options={users.map(user => ({
+              value: String(user.userId),
+              label: user.name || "" 
+            }))} 
+          />
+            </div> */}
+              <div>
+              <label htmlFor="categoryId">Category:</label>
+              <SelectField id="categoryId" value={categoryId} onChange={(e) => setCategoryId(e.target.value)} required options={categories.map(category => ({ value: category.categoryId, label: category.categoryName }))} />
+            </div>
+            <div>
+              <label htmlFor="creatorId">Creator:</label>
+              <SelectField id="creatorId" value={creatorId} onChange={(e) => setCreatorId(e.target.value)} required options={users.map(user => ({ value: user.userId, label: user.name }))} />
+            </div>
             <div>
               <label htmlFor="createdAt">Created At:</label>
               <InputField type="datetime-local" id="createdAt" value={createdAt} onChange={handleCreatedAtChange} required/>
@@ -172,4 +250,6 @@ const AddTask = () => {
     </Container>
   );
 };
+
+
 export default AddTask;

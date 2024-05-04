@@ -30,7 +30,7 @@ const TaskList = () => {
     const [tasks, setTasks] = useState([]);
     const navigator = useNavigate()
     useEffect(() => {
-        axios.get('http://localhost:8080/tasks/list')
+        axios.get('http://localhost:8080/tasks/list',{ timeout: 5000 })
             .then(response => {
                 setTasks(response.data);
             })
