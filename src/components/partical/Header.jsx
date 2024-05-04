@@ -46,9 +46,6 @@ const Header = () => {
           <li>
             <Link to='/contactadmin'>Trang Liên Hệ</Link>
           </li>
-          <li>
-          <Link to='/addtask'>Thêm Task</Link>
-          </li>
         </ul>
       </NavContainer>
     </HeaderContainer>

@@ -4,12 +4,12 @@ import HomeUser from './components/HomeUser';
 import Login from './components/Login';
 import HomeTaskList from './components/HomeTaskList';
 import Contact from './components/Contact';
-import HomePage from './components/HomePage';
-import ListTaskAdmin from './components/ListTaskAdmin';
-import ListUserAdmin from './components/ListUserAdmin';
-import ListCategoryAdmin from './components/ListCategoryAdmin';
-import ContactAdmin from './components/ContactAdmin';
-import AddTask from './components/AddTask'
+import HomePage from './components/admin/HomePage';
+import ListTaskAdmin from './components/admin/ListTaskAdmin';
+import ListUserAdmin from './components/admin/ListUserAdmin';
+import ListCategoryAdmin from './components/admin/ListCategoryAdmin';
+import ContactAdmin from './components/admin/ContactAdmin';
+import AddTask from './components/admin/AddTask'
 function App() {
   return (
     <Router>

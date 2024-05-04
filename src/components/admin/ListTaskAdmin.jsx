@@ -1,5 +1,5 @@
-import Header from './partical/Header';
-import Footer from './partical/Footer';
+import Header from '../partical/Header';
+import Footer from '../partical/Footer';
 import styled from 'styled-components';
 import TaskList from './TaskList';
 

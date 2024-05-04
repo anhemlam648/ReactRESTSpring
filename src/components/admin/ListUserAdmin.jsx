@@ -1,22 +1,22 @@
-import Header from './partical/Header';
-import Footer from './partical/Footer';
+import Header from '../partical/Header';
+import Footer from '../partical/Footer';
 import styled from 'styled-components';
+import ListUser from './ListUser';
 const ContentContainer = styled.div`
   padding: 20px;
   margin-top: -250px;
 `;
 
-const HomePage = () => {
+const ListUserAdmin = () => {
   return (
     <div>
       <Header />
       <ContentContainer>
-        <h2>Trang chính</h2>
-        <p>Xin chào! Đây là trang chính admin của ứng dụng quản lý task.</p>
+          <ListUser/>
       </ContentContainer>
       <Footer />
     </div>
   );
 };
 
-export default HomePage;
+export default ListUserAdmin;
