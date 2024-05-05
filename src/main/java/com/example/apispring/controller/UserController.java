@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,4 +27,18 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(userDtos);
         }
     }
+
+    @PostMapping("/add")
+    @ResponseBody
+    public ResponseEntity RegisterUser(@RequestBody() UserDto userDto){
+        boolean isSuccess = this.userServiceImpl.createUserDto(userDto);
+        System.out.println("Received JSON: " + userDto.toString());
+        if(isSuccess){
+            return ResponseEntity.ok(isSuccess);
+        }else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(isSuccess);
+
+        }
+    }
+
 }
