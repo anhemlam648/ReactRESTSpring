@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
 const TaskListContainer = styled.div`
-    margin-top: 40px;
+    margin-top: 100px;
 `;
 
 const Table = styled.table`
@@ -39,7 +39,7 @@ const CategoryList = () => {
             });
     }, []);
     function addCategory(){
-        navigator('/#')
+        navigator('/addcategory')
     }
     return (
         <TaskListContainer>
