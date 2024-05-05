@@ -1,6 +1,7 @@
 package com.example.apispring.service.Impl;
 
 import com.example.apispring.dto.CategoryDto;
+import com.example.apispring.entity.Category;
 import com.example.apispring.mapper.CategoryMapper;
 import com.example.apispring.repository.CategoryRepository;
 import com.example.apispring.service.CategoryService;
@@ -17,7 +18,9 @@ public class CategoryServiceImpl implements CategoryService {
     private CategoryRepository categoryRepository;
     @Override
     public boolean createCategory(CategoryDto categoryDto) {
-        return false;
+        Category category = CategoryMapper.mapToCategory(categoryDto);
+        Category categoriessave = categoryRepository.save(category);
+        return categoriessave != null;
     }
 
     public List<CategoryDto> getAllCategory(){

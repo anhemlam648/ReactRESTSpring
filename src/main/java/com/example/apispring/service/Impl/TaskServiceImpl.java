@@ -27,16 +27,6 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public boolean createTaskDto(TaskDto taskDto) {
         Task task = TaskMapper.mapToTask(taskDto);
-//        if (taskDto.getCategoryId() != null) {
-//            Category category = new Category();
-//            category.setCategoryId(taskDto.getCategoryId());
-//            task.setCategory(category);
-//        }
-//        if (taskDto.getCreatorId() != null) {
-//            User user = new User();
-//            user.setUserId(taskDto.getCreatorId());
-//            task.setCreator(user);
-//        }
         Task savedTask = taskRepository.save(task);
 //        return TaskMapper.mapToTaskDto(savedTask);
         return savedTask != null;
