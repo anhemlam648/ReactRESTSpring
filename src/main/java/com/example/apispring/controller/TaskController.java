@@ -50,6 +50,16 @@ public class TaskController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Task not found");
         }
     }
-
+    @PutMapping("/update/{taskId}")
+    @ResponseBody
+    public ResponseEntity updateTask(@PathVariable Long taskId, @RequestBody TaskDto taskDto) {
+        taskDto.setTaskId(taskId);
+        boolean isSuccess = this.taskServiceimpl.updateTaskDto(taskDto);
+        if (isSuccess) {
+            return ResponseEntity.ok(isSuccess);
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(isSuccess);
+        }
+    }
 
 }
