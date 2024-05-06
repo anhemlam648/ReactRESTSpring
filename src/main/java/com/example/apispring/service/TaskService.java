@@ -11,4 +11,6 @@ public interface TaskService {
 //    TaskDto createTaskDto (TaskDto taskDto);
 //    List<TaskDto> getAllTasks(TaskDto taskDto);
     boolean createTaskDto (TaskDto taskDto);
+    boolean updateTaskDto (TaskDto taskDto);
+    TaskDto getTaskById(Long taskId);
 }
