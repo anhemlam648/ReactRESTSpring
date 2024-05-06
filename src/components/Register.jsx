@@ -1,23 +1,23 @@
 // import Header from './partical/Headeruser';
 // import Footer from './partical/Footeruser';
 import styled from 'styled-components';
-import LoginUser from './LoginUser';
+import RegisterUser from './RegisterUser';
 const ContentContainer = styled.div`
   padding: 20px;
-  margin-top: 50px;
-  margin-left: 600px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  margin-left: 580px;
   justify-content: center;
   align-items: center;
-  display: flex;
 `;
 
-const Login = () => {
+const Register = () => {
   return (
     <div>
       <ContentContainer>
-       <LoginUser />
+       <RegisterUser />
       </ContentContainer>
     </div>
   );
 };
-export default Login;
+export default Register;

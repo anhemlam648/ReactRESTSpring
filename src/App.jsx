@@ -11,6 +11,7 @@ import ListCategoryAdmin from './components/admin/ListCategoryAdmin';
 import ContactAdmin from './components/admin/ContactAdmin';
 import AddTask from './components/admin/AddTask'
 import AddCategory from './components/admin/AddCategory';
+import Register from './components/Register';
 function App() {
   return (
     <Router>
@@ -28,6 +29,7 @@ function App() {
         <Route path="/contactadmin" element={<ContactAdmin />} />
         <Route path="/addtask" element={<AddTask />} />
         <Route path="/addcategory" element={<AddCategory/>}/>
+        <Route path="/register" element={<Register/>}/>
       </Routes>
     </Router>
   );

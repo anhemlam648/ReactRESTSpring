@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import { useNavigate } from "react-router-dom";
 const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -48,14 +48,14 @@ const RegisterButton = styled(Button)`
 `;
 
 const LoginUser = () => {
+
   const handleLogin = (e) => {
     e.preventDefault();
   };
-
-  const handleRegister = (e) => {
-    e.preventDefault();
-  };
-
+  const navigator = useNavigate();
+  function Register(){
+        navigator("/register")
+  }
   return (
     <LoginContainer>
       <LoginForm onSubmit={handleLogin}>
@@ -63,7 +63,7 @@ const LoginUser = () => {
         <Input type="text" placeholder="Tên đăng nhập" />
         <Input type="password" placeholder="Mật khẩu" />
         <Button type="submit">Đăng nhập</Button>
-        <p>Chưa có tài khoản? <RegisterButton onClick={handleRegister}>Đăng ký</RegisterButton></p>
+        <p>Chưa có tài khoản? <RegisterButton onClick={Register}>Đăng ký</RegisterButton></p>
       </LoginForm>
     </LoginContainer>
   );
