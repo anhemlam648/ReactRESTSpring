@@ -25,7 +25,9 @@ const Td = styled.td`
     border-bottom: 1px solid #ddd;
     text-align: center;
 `;
-
+const Button = styled.button`
+    margin-right: 5px;
+`;
 const TaskList = () => {
     const [tasks, setTasks] = useState([]);
     const navigator = useNavigate()
@@ -42,6 +44,13 @@ const TaskList = () => {
         navigator('/addtask') 
         
     }
+    function updateTask(taskId) {
+        navigator(`/updatetask/${taskId}`); 
+    }
+    // function deleteTask(){
+    //     console.log('Xóa task có ID:', taskId);
+        
+    // }
     return (
         <TaskListContainer>
             <div style={{marginBottom: '20px'}}>
@@ -60,6 +69,7 @@ const TaskList = () => {
                         <Th>Creator </Th>
                         <Th>Created</Th>
                         <Th>Updated</Th>
+                        <Th>Action</Th>
                     </tr>
                 </thead>
                 <tbody>
@@ -75,6 +85,10 @@ const TaskList = () => {
                             <Td>{task.creatorId}</Td>
                             <Td>{task.createdAt}</Td>
                             <Td>{task.updatedAt}</Td>
+                            <Td>
+                                <Button onClick={() => updateTask(task.taskId)}>Update</Button>
+                                {/* <Button onClick={() => handleDelete(task.taskId)}>Delete</Button> */}
+                            </Td>
                         </tr>
                     ))}
                 </tbody>
