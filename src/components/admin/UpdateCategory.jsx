@@ -115,7 +115,7 @@ const UpdateCategory = () => {
               <InputField type="text" id="categoryName" name="categoryName" value={category.categoryName} onChange={handleInputChange} required />
             </div>
             <SubmitButton type="submit">Update Category</SubmitButton>
-            <StyledLink to="/listcategoryadmin">Back to Category List</StyledLink>
+            <StyledLink to="/listcategoryadmin">Back to</StyledLink>
           </form>
         </FormContainer>
       </ContentContainer>
