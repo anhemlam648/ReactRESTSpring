@@ -25,7 +25,9 @@ const Td = styled.td`
     border-bottom: 1px solid #ddd;
     text-align: center;
 `;
-
+const Button = styled.button`
+    margin-right: 5px;
+`;
 const CategoryList = () => {
     const [categories, setCategories] = useState([]);
     const navigator = useNavigate()
@@ -41,6 +43,9 @@ const CategoryList = () => {
     function addCategory(){
         navigator('/addcategory')
     }
+    function updateCategory(categoryId) {
+        navigator(`/updatecategory/${categoryId}`); 
+    }
     return (
         <TaskListContainer>
                <div style={{marginBottom: '20px'}}>
@@ -51,6 +56,7 @@ const CategoryList = () => {
                     <tr>
                         <Th>Category_id </Th>
                         <Th>Name</Th>
+                        <Th>Action</Th>
                     </tr>
                 </thead>
                 <tbody>
@@ -58,6 +64,10 @@ const CategoryList = () => {
                         <tr key={category.categoryId }>
                             <Td>{category.categoryId }</Td>
                             <Td>{category.categoryName}</Td>
+                            <Td>
+                                <Button onClick={() => updateCategory(category.categoryId)}>Update</Button>
+                                {/* <Button onClick={() => handleDelete(task.taskId)}>Delete</Button> */}
+                            </Td>
                         </tr>
                     ))}
                 </tbody>
