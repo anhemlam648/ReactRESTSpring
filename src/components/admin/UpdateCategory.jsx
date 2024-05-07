@@ -55,7 +55,7 @@ const StyledLink = styled(Link)`
   padding: 10px 20px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-left: 135px;
+  margin-left: 160px;
   margin-bottom: 20px;
   &:hover {
     background-color: #0056b3;
