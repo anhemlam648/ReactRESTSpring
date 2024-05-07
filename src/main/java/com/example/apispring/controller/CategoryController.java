@@ -35,9 +35,31 @@ public class CategoryController {
     }
     @PostMapping("/add")
     @ResponseBody
-    public ResponseEntity createTask(@RequestBody() CategoryDto categoryDto) {
+    public ResponseEntity createCategory(@RequestBody() CategoryDto categoryDto) {
         boolean isSuccess = this.categoryServiceImpl.createCategory(categoryDto);
         System.out.println("Gọi Category " + isSuccess);
+        if (isSuccess) {
+            return ResponseEntity.ok(isSuccess);
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(isSuccess) ;
+    }
+
+    @GetMapping("/categorys/{categoryId}")
+    @ResponseBody
+    public ResponseEntity getCategoryById(@PathVariable Long categoryId) {
+        CategoryDto categoryDto = this.categoryServiceImpl.getCategoryById(categoryId);
+        if (categoryDto != null) {
+            return ResponseEntity.ok(categoryDto);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("category not found");
+        }
+    }
+    @PutMapping("/update/{categoryId}")
+    @ResponseBody
+    public ResponseEntity updateCategory(@PathVariable Long categoryId ,@RequestBody() CategoryDto categoryDto) {
+        categoryDto.setCategoryId(categoryId);
+        boolean isSuccess = this.categoryServiceImpl.createCategory(categoryDto);
+        System.out.println("Gọi update Category " + isSuccess);
         if (isSuccess) {
             return ResponseEntity.ok(isSuccess);
         }

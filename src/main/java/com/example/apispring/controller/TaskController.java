@@ -55,6 +55,7 @@ public class TaskController {
     public ResponseEntity updateTask(@PathVariable Long taskId, @RequestBody TaskDto taskDto) {
         taskDto.setTaskId(taskId);
         boolean isSuccess = this.taskServiceimpl.updateTaskDto(taskDto);
+        System.out.println("Gọi update Task " + isSuccess);
         if (isSuccess) {
             return ResponseEntity.ok(isSuccess);
         } else {
