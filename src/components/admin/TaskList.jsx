@@ -40,6 +40,23 @@ const TaskList = () => {
                 console.error('Lỗi khi lấy danh sách task:', error);
             });
     }, []);
+    const deleteTask = (taskId) => {
+        axios.delete(`http://localhost:8080/tasks/delete/${taskId}`)
+            .then(response => {
+                console.log('Task đã được xóa:', response.data);
+                // Cập nhật lại danh sách Task
+                axios.get('http://localhost:8080/tasks/list')
+                    .then(response => {
+                        setTasks(response.data);
+                    })
+                    .catch(error => {
+                        console.error('Lỗi khi cập nhật danh sách task:', error);
+                    });
+            })
+            .catch(error => {
+                console.error('Lỗi khi xóa task:', error);
+            });
+    };
     function addnewTask(){
         navigator('/addtask') 
         
@@ -47,10 +64,6 @@ const TaskList = () => {
     function updateTask(taskId) {
         navigator(`/updatetask/${taskId}`); 
     }
-    // function deleteTask(){
-    //     console.log('Xóa task có ID:', taskId);
-        
-    // }
     return (
         <TaskListContainer>
             <div style={{marginBottom: '20px'}}>
@@ -87,7 +100,7 @@ const TaskList = () => {
                             <Td>{task.updatedAt}</Td>
                             <Td>
                                 <Button onClick={() => updateTask(task.taskId)}>Update</Button>
-                                {/* <Button onClick={() => handleDelete(task.taskId)}>Delete</Button> */}
+                                <Button onClick={() => deleteTask(task.taskId)}>Delete</Button>
                             </Td>
                         </tr>
                     ))}
