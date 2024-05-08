@@ -62,5 +62,16 @@ public class TaskController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(isSuccess);
         }
     }
+    @DeleteMapping("/delete/{taskId}")
+    @ResponseBody
+    public ResponseEntity deleteTask(@PathVariable Long taskId) {
+        boolean isSuccess = this.taskServiceimpl.deleteTaskById(taskId);
+        System.out.println("Gọi delete Task " + isSuccess);
+        if (isSuccess) {
+            return ResponseEntity.ok(isSuccess);
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(isSuccess);
+        }
+    }
 
 }

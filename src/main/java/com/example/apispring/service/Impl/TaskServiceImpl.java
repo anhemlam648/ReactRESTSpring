@@ -73,6 +73,16 @@ public class TaskServiceImpl implements TaskService {
         }
     }
 
+    @Override
+    public boolean deleteTaskById(Long taskId) {
+        Optional<Task> deleteTask = taskRepository.findById(taskId);
+        if(deleteTask.isPresent()){
+            taskRepository.delete(deleteTask.get());
+            return true;
+        }
+        return false;
+    }
+
 
     public List<TaskDto> getAllTasks() {
         List<TaskDto> taskDtos = taskRepository.findAll().stream()
@@ -80,6 +90,7 @@ public class TaskServiceImpl implements TaskService {
                 .collect(Collectors.toList());
         return taskDtos;
     }
+
 //    @Override
 //    public List<TaskDto> getAllTasks() {
 //        List<TaskDto> taskDtos = taskRepository.findAll().stream()

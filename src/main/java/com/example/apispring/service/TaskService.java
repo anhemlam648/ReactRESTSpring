@@ -13,4 +13,5 @@ public interface TaskService {
     boolean createTaskDto (TaskDto taskDto);
     boolean updateTaskDto (TaskDto taskDto);
     TaskDto getTaskById(Long taskId);
+    boolean deleteTaskById(Long taskId);
 }
