@@ -50,6 +50,17 @@ public class CategoryServiceImpl implements CategoryService {
         }
     }
 
+    @Override
+    public boolean deleteCategoryById(Long categoryId) {
+        Optional<Category> deletecategory = categoryRepository.findById(categoryId);
+        if(deletecategory.isPresent()){
+            categoryRepository.delete(deletecategory.get());
+            return true;
+        }
+        return false;
+    }
+
+
     public List<CategoryDto> getAllCategory(){
         List<CategoryDto> categoryDtos = categoryRepository.findAll()
                 .stream().map(CategoryMapper::mapToCategoryDto)

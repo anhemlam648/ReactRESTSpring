@@ -65,4 +65,15 @@ public class CategoryController {
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(isSuccess) ;
     }
+    @DeleteMapping("/delete/{categoryId}")
+    @ResponseBody
+    public ResponseEntity deleteCategory(@PathVariable Long categoryId) {
+        boolean isSuccess = this.categoryServiceImpl.deleteCategoryById(categoryId);
+        System.out.println("Gọi delete Category " + isSuccess);
+        if (isSuccess) {
+            return ResponseEntity.ok(isSuccess);
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(isSuccess);
+        }
+    }
 }

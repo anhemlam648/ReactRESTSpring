@@ -12,4 +12,5 @@ public interface CategoryService {
     boolean createCategory (CategoryDto categoryDto);
     boolean updateCategoryDto (CategoryDto categoryDto);
     CategoryDto getCategoryById(Long categoryId);
+    boolean deleteCategoryById(Long categoryId);
 }
