@@ -40,6 +40,23 @@ const CategoryList = () => {
                 console.error('Lỗi khi lấy danh sách category:', error);
             });
     }, []);
+    const deleteCategory = (categoryId) => {
+        axios.delete(`http://localhost:8080/category/delete/${categoryId}`)
+            .then(response => {
+                console.log('Category đã được xóa:', response.data);
+                // Cập nhật lại danh sách Task
+                axios.get('http://localhost:8080/category/list')
+                    .then(response => {
+                        setCategories(response.data);
+                    })
+                    .catch(error => {
+                        console.error('Lỗi khi cập nhật danh sách category:', error);
+                    });
+            })
+            .catch(error => {
+                console.error('Lỗi khi xóa category:', error);
+            });
+    };
     function addCategory(){
         navigator('/addcategory')
     }
@@ -66,7 +83,7 @@ const CategoryList = () => {
                             <Td>{category.categoryName}</Td>
                             <Td>
                                 <Button onClick={() => updateCategory(category.categoryId)}>Update</Button>
-                                {/* <Button onClick={() => handleDelete(task.taskId)}>Delete</Button> */}
+                                <Button onClick={() => deleteCategory(category.categoryId)}>Delete</Button>
                             </Td>
                         </tr>
                     ))}
