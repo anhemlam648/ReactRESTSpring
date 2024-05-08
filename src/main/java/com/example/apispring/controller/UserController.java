@@ -1,7 +1,10 @@
 package com.example.apispring.controller;
 
+import com.example.apispring.dto.LoginDto;
 import com.example.apispring.dto.UserDto;
+import com.example.apispring.payloadreponse.LoginMesage;
 import com.example.apispring.service.Impl.UserServiceImpl;
+import com.example.apispring.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +20,8 @@ public class UserController {
     @Autowired
     private UserServiceImpl userServiceImpl;
 
+    @Autowired
+    private UserService userService;
     @GetMapping("/list")
     @ResponseBody
     public ResponseEntity<List<UserDto>> getAllUser(){
@@ -39,6 +44,15 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(isSuccess);
 
         }
+    }
+
+    @PostMapping("/login")
+    @ResponseBody
+    public ResponseEntity<?> LoginUser(@RequestBody LoginDto loginDto){
+
+        LoginMesage loginMesage = userService.LoginUser(loginDto);
+        return ResponseEntity.ok(loginMesage);
+
     }
 
 }
