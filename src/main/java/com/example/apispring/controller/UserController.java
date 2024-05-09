@@ -55,4 +55,27 @@ public class UserController {
 
     }
 
+    @GetMapping("/users/{userId}")
+    @ResponseBody
+    public ResponseEntity getUserById(@PathVariable Long userId){
+       UserDto userDto = this.userServiceImpl.getUserById(userId);
+        if(userDto != null){
+            return ResponseEntity.ok(userDto);
+        }else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("user not found");
+
+        }
+    }
+    @DeleteMapping("/delete/{userId}")
+    @ResponseBody
+    public ResponseEntity deleteUser(@PathVariable Long userId){
+        boolean isSuccess = this.userServiceImpl.deleteUserById(userId);
+        System.out.println("Gọi delete User" + isSuccess);
+        if(isSuccess){
+            return ResponseEntity.ok(isSuccess);
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(isSuccess);
+        }
+    }
+
 }

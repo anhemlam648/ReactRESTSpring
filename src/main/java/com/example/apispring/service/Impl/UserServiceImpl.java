@@ -49,6 +49,29 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public UserDto getUserById(Long userId) {
+        Optional<User> optionaluser = this.userRepository.findById(userId);
+        if(optionaluser.isPresent()){
+            User user = optionaluser.get();
+            return UserMapper.mapToUserDto(user);
+        }
+        else {
+            return null;
+        }
+    }
+
+    @Override
+    public Boolean deleteUserById(Long userId) {
+        Optional<User> deleteUser = this.userRepository.findById(userId);
+        if(deleteUser.isPresent()){
+            userRepository.delete(deleteUser.get());
+            return true;
+        }
+        return false;
+    }
+
+
     public List<UserDto> getAllUser() {
         List<UserDto> userDtos = this.userRepository.findAll().stream()
                 .map(UserMapper::mapToUserDto)

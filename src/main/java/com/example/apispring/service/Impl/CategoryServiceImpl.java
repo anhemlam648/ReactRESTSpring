@@ -44,7 +44,6 @@ public class CategoryServiceImpl implements CategoryService {
         if(optionalCategory.isPresent()){
             Category category = optionalCategory.get();
             return CategoryMapper.mapToCategoryDto(category);
-
         }else {
             return null;
         }
