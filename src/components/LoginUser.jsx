@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 const LoginContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -48,9 +50,51 @@ const RegisterButton = styled(Button)`
 `;
 
 const LoginUser = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
+  const CheckEmptyFields = () =>{
+    if(!email){
+      alert("vui lòng nhập email");
+      return false;
+    }
+    else if(!password){
+      alert("vui lòng nhập mật khẩu");
+      return false;
+    }
+    return true;
+  }
   const handleLogin = (e) => {
     e.preventDefault();
+    if(!CheckEmptyFields()){
+      return;
+    }
+    axios.post('http://localhost:8080/user/login', {
+      email: email,
+      password: password,
+    }).then(response => {
+      const loginMessage = response.data;
+      if (loginMessage.status) {
+        console.log('Đăng nhập thành công', loginMessage.message);
+        navigator("/listuser");
+      } else {
+        console.log('Đăng nhập thất bại', loginMessage.message);
+        alert("Đăng nhập thất bại. " + loginMessage.message);
+        navigator("/login");
+      }
+    }).catch(error => {
+      console.log('Đăng nhập thất bại', error);
+      alert("Đăng nhập thất bại. Vui lòng kiểm tra lại email và mật khẩu.");
+      navigator("/login");
+    });
+  };
+   
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
   };
   const navigator = useNavigate();
   function Register(){
@@ -60,8 +104,8 @@ const LoginUser = () => {
     <LoginContainer>
       <LoginForm onSubmit={handleLogin}>
         <h2>Đăng nhập</h2>
-        <Input type="text" placeholder="Tên đăng nhập" />
-        <Input type="password" placeholder="Mật khẩu" />
+        <Input id="email" type="text" placeholder="Tên đăng nhập"  value={email} onChange={handleEmailChange} />
+        <Input id="password" type="password" placeholder="Mật khẩu" value={password} onChange={handlePasswordChange}/>
         <Button type="submit">Đăng nhập</Button>
         <p>Chưa có tài khoản? <RegisterButton onClick={Register}>Đăng ký</RegisterButton></p>
       </LoginForm>
