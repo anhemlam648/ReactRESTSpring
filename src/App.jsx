@@ -14,6 +14,7 @@ import AddCategory from './components/admin/AddCategory';
 import Register from './components/Register';
 import UpdateTask from './components/admin/UpdateTask';
 import UpdateCategory from './components/admin/UpdateCategory';
+import DetailUser from './components/admin/DetailUser';
 function App() {
   return (
     <Router>
@@ -34,6 +35,7 @@ function App() {
         <Route path="/register" element={<Register/>}/>
         <Route path="/updatetask/:taskId" element={<UpdateTask />} />
         <Route path="/updatecategory/:categoryId" element={<UpdateCategory />} />
+        <Route path="/deltailuser/:userId" element={<DetailUser />} />
       </Routes>
     </Router>
   );

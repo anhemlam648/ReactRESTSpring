@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const TaskListContainer = styled.div`
     margin-top: 40px;
@@ -31,7 +30,7 @@ const Button = styled.button`
 `;
 const UserList = () => {
     const [users, setUser] = useState([]);
-    // const navigator = useNavigate()
+    const navigator = useNavigate()
     useEffect(() => {
         axios.get('http://localhost:8080/user/list',{ timeout: 5000 })
             .then(response => {
@@ -58,6 +57,9 @@ const UserList = () => {
                 console.error('Lỗi khi xóa user:', error);
             });
     };
+    function deltailUser(userId){
+        navigator(`/deltailuser/${userId}`); 
+    }
     return (
         <TaskListContainer>
             <Table>
@@ -82,6 +84,7 @@ const UserList = () => {
                             <Td>{user.createdAt}</Td>
                             <Td>{user.updatedAt}</Td>
                             <Td>
+                                <Button onClick={() => deltailUser(user.userId)}>Details</Button>
                                  <Button onClick={() => deleteUser(user.userId)}>Delete</Button>
                             </Td>
                         </tr>
