@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+
 // import { useNavigate } from 'react-router-dom';
 
 const TaskListContainer = styled.div`
@@ -25,7 +26,9 @@ const Td = styled.td`
     border-bottom: 1px solid #ddd;
     text-align: center;
 `;
-
+const Button = styled.button`
+    margin-right: 5px;
+`;
 const UserList = () => {
     const [users, setUser] = useState([]);
     // const navigator = useNavigate()
@@ -38,6 +41,23 @@ const UserList = () => {
                 console.error('Lỗi khi lấy danh sách user:', error);
             });
     }, []);
+    const deleteUser = (userId) => {
+        axios.delete(`http://localhost:8080/user/delete/${userId}`)
+            .then(response => {
+                console.log('User đã được xóa:', response.data);
+                // Cập nhật lại danh sách User
+                axios.get('http://localhost:8080/user/list')
+                    .then(response => {
+                        setUser(response.data);
+                    })
+                    .catch(error => {
+                        console.error('Lỗi khi cập nhật danh sách user:', error);
+                    });
+            })
+            .catch(error => {
+                console.error('Lỗi khi xóa user:', error);
+            });
+    };
     return (
         <TaskListContainer>
             <Table>
@@ -49,6 +69,7 @@ const UserList = () => {
                         <Th>Access_level</Th>
                         <Th>Created_at</Th>
                         <Th>Updated_at</Th>
+                        <Th>Action</Th>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,6 +81,9 @@ const UserList = () => {
                             <Td>{user.accessLevel}</Td>
                             <Td>{user.createdAt}</Td>
                             <Td>{user.updatedAt}</Td>
+                            <Td>
+                                 <Button onClick={() => deleteUser(user.userId)}>Delete</Button>
+                            </Td>
                         </tr>
                     ))}
                 </tbody>
