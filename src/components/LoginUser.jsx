@@ -76,6 +76,7 @@ const LoginUser = () => {
       const loginMessage = response.data;
       if (loginMessage.status) {
         console.log('Đăng nhập thành công', loginMessage.message);
+        sessionStorage.setItem('userName', loginMessage.name); //lưu name user vào session gọi từ phía backend
         navigator("/listuser");
       } else {
         console.log('Đăng nhập thất bại', loginMessage.message);

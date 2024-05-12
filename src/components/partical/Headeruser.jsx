@@ -1,16 +1,17 @@
+
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const HeaderContainer = styled.div`
-  background-color: #CCCCFF; /* Màu hồng sữa */
-  color: #fff; /* Màu chữ */
-  padding: 10px; /* Khoảng cách từ viền */
-  text-align: left; /* Căn giữa nội dung */
-  font-size: 10px; /* Đặt kích thước chữ là 16px */
-  position: fixed; /* Sử dụng vị trí cố định */
-  top: 0; /* Đặt top về 0 để header nằm ở trên cùng */
-  width: 100%; /* Chiều rộng 100% */
-  z-index: 100; /* Đảm bảo header hiển thị trên các phần tử khác */
+  background-color: #CCCCFF;
+  color: #fff;
+  padding: 10px;
+  text-align: left;
+  font-size: 10px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
 `;
 
 const NavContainer = styled.nav`
@@ -20,19 +21,39 @@ const NavContainer = styled.nav`
     margin: 0;
     font-size: 15px;
     display: flex;
-    justify-content: center; /* Canh giữa các liên kết */
+    justify-content: center;
   }
 
   li {
-    margin-right: 20px; /* Khoảng cách giữa các liên kết */
+    margin-right: 20px;
   }
 `;
 
 const HeaderUser = () => {
+  const userName = sessionStorage.getItem('userName');
+  console.log('userName:', userName);
+  const handleLogout = () => {
+    // Xóa session
+    sessionStorage.removeItem('userName');
+  };
+
   return (
     <HeaderContainer>
       <h1>Ứng dụng quản lý task</h1>
-      <li style={{ marginLeft: '1400px', marginTop: '-40px', fontSize: '15px' }}><Link to='/login'>Đăng Nhập</Link></li>
+      {userName ? (
+        <>
+          <div style={{ marginLeft: '1350px', marginTop: '-40px', fontSize: '15px' }}>
+            <span>Xin chào, {userName}</span>
+            <div>
+            <Link to='/' onClick={handleLogout}>Đăng xuất</Link>
+            </div>
+          </div>
+        </>
+      ) : (
+        <li style={{ marginLeft: '1400px', marginTop: '-40px', fontSize: '15px' }}>
+          <Link to='/login'>Đăng Nhập</Link>
+        </li>
+      )}
       <NavContainer>
         <ul>
           <li>
