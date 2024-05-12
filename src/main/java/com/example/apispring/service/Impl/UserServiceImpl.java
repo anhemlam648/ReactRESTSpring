@@ -40,12 +40,12 @@ public class UserServiceImpl implements UserService {
             User user = optionalUser.get();
             String encodedPassword = user.getPassword();
             if (passwordEncoder.matches(loginDto.getPassword(), encodedPassword)) {
-                return new LoginMesage("Đăng nhập thành công", true);
+                return new LoginMesage("Đăng nhập thành công", true, user.getName());
             } else {
-                return new LoginMesage("Vui lòng kiểm tra lại tài khoản hoặc mật khẩu", false);
+                return new LoginMesage("Vui lòng kiểm tra lại tài khoản hoặc mật khẩu", false,null);
             }
         } else {
-            return new LoginMesage("Email không tìm thấy", false);
+            return new LoginMesage("Email không tìm thấy", false,null);
         }
     }
 
