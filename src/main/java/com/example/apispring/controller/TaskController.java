@@ -26,7 +26,7 @@ public class TaskController {
         if (taskDtos != null) {
             return ResponseEntity.ok(taskDtos);
         } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(taskDtos) ;
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(taskDtos);
         }
     }
 
@@ -38,8 +38,9 @@ public class TaskController {
         if (isSuccess) {
             return ResponseEntity.ok(isSuccess);
         }
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(isSuccess) ;
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(isSuccess);
     }
+
     @GetMapping("/task/{taskId}")
     @ResponseBody
     public ResponseEntity getTaskById(@PathVariable Long taskId) {
@@ -50,6 +51,7 @@ public class TaskController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Task not found");
         }
     }
+
     @PutMapping("/update/{taskId}")
     @ResponseBody
     public ResponseEntity updateTask(@PathVariable Long taskId, @RequestBody TaskDto taskDto) {
@@ -62,6 +64,7 @@ public class TaskController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(isSuccess);
         }
     }
+
     @DeleteMapping("/delete/{taskId}")
     @ResponseBody
     public ResponseEntity deleteTask(@PathVariable Long taskId) {
@@ -73,5 +76,30 @@ public class TaskController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(isSuccess);
         }
     }
+
+    @GetMapping("/search")
+    @ResponseBody
+    public ResponseEntity searchTask(@RequestParam(required = false) String taskName) {
+        List<TaskDto> searchTask = this.taskServiceimpl.searchTask(taskName);
+        if (!searchTask.isEmpty()) {
+            return ResponseEntity.ok(searchTask);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("task not found");
+        }
+    }
+//        @GetMapping("/search")
+//        @ResponseBody
+//        public ResponseEntity searchTask(@RequestParam(required = false) String taskName) {
+//            if (taskName != null && !taskName.isEmpty()) {
+//                List<TaskDto> searchTask = this.taskServiceimpl.searchTask(taskName);
+//                if (!searchTask.isEmpty()) {
+//                    return ResponseEntity.ok(searchTask);
+//                } else {
+//                    return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+//                }
+//            } else {
+//                return ResponseEntity.badRequest().build();
+//            }
+//      }
 
 }

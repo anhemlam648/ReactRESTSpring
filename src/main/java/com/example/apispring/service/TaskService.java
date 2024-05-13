@@ -14,4 +14,5 @@ public interface TaskService {
     boolean updateTaskDto (TaskDto taskDto);
     TaskDto getTaskById(Long taskId);
     boolean deleteTaskById(Long taskId);
+    List<TaskDto> searchTask(String taskName);
 }

@@ -12,6 +12,7 @@ import com.example.apispring.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -81,6 +82,19 @@ public class TaskServiceImpl implements TaskService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<TaskDto> searchTask(String taskName) {
+        if (taskName == null || taskName.isEmpty()) {
+            return Collections.emptyList();   //Khi taskName là null hoặc rỗng
+        }
+
+        List<Task> searchTasks = taskRepository.findByTaskName(taskName);
+        List<TaskDto> taskDtos = searchTasks.stream()
+                .map(TaskMapper::mapToTaskDto)
+                .collect(Collectors.toList());
+        return taskDtos;
     }
 
 
