@@ -84,19 +84,30 @@ public class TaskServiceImpl implements TaskService {
         return false;
     }
 
+//    @Override
+//    public List<TaskDto> searchTask(String taskName) {
+//        if (taskName == null || taskName.isEmpty()) {
+//            return Collections.emptyList();   //Khi taskName là null hoặc rỗng
+//        }
+//
+//        List<Task> searchTasks = taskRepository.findByTaskName(taskName);
+//        List<TaskDto> taskDtos = searchTasks.stream()
+//                .map(TaskMapper::mapToTaskDto)
+//                .collect(Collectors.toList());
+//        return taskDtos;
+//    }
+    //tìm kiếm gần đúng, chữ hoa, chữ thường
     @Override
     public List<TaskDto> searchTask(String taskName) {
         if (taskName == null || taskName.isEmpty()) {
-            return Collections.emptyList();   //Khi taskName là null hoặc rỗng
+            return Collections.emptyList();   // Khi taskName là null hoặc rỗng
         }
 
-        List<Task> searchTasks = taskRepository.findByTaskName(taskName);
-        List<TaskDto> taskDtos = searchTasks.stream()
+        List<Task> searchTasks = taskRepository.findByTaskNameContainingIgnoreCase(taskName);
+        return searchTasks.stream()
                 .map(TaskMapper::mapToTaskDto)
                 .collect(Collectors.toList());
-        return taskDtos;
     }
-
 
     public List<TaskDto> getAllTasks() {
         List<TaskDto> taskDtos = taskRepository.findAll().stream()

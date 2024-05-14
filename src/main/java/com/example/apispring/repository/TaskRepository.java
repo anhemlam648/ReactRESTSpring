@@ -11,5 +11,6 @@ import java.util.List;
 public interface TaskRepository extends JpaRepository <Task, Long> {
 //    @Query("SELECT t.taskId, t.createdAt, t.deadline, t.description, t.startTime, t.status, t.taskName, t.updatedAt, t.category.categoryId, t.creator.userId FROM Task t")
 //    List<Object[]> findAll();
-    List<Task> findByTaskName(String taskName);
+//    List<Task> findByTaskName(String taskName);
+    List<Task> findByTaskNameContainingIgnoreCase(String taskName);
 }
