@@ -1,7 +1,8 @@
-
+import { useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
-
+// import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
 const HeaderContainer = styled.div`
   background-color: #CCCCFF;
   color: #fff;
@@ -29,14 +30,62 @@ const NavContainer = styled.nav`
   }
 `;
 
+const SearchContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+  input {
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 14px;
+    Background-color: #F8F8FF
+  }
+
+  button {
+    padding: 5px;
+    font-size: 14px;
+    margin-left: 5px;
+    cursor: pointer;
+    Background-color: #F8F8FF
+  }
+`;
+
 const HeaderUser = () => {
+  const [taskName, setTaskName] = useState('');
   const userName = sessionStorage.getItem('userName');
-  console.log('userName:', userName);
+  const navigator = useNavigate()
   const handleLogout = () => {
-    // Xóa session
     sessionStorage.removeItem('userName');
   };
-
+  const handleSearchTask = (e) => {
+    setTaskName(e.target.value);
+  };
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    if (taskName.trim() !== '') {
+      try {
+        const response = await axios.get(`http://localhost:8080/tasks/search`, {
+          params: {
+            taskName: taskName
+          }
+        });
+        if (response.data && response.data.length > 0) {
+          navigator('/searchtask', { state: { tasks: response.data } });
+        } else {
+          alert('Task không tìm thấy');
+        }
+      } catch (error) {
+        console.error('lỗi tìm kiếm Task:', error);
+        alert('lỗi tìm kiếm Task');
+        navigator('/task')
+      }
+    }
+  };
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch(e);
+    }
+  };
   return (
     <HeaderContainer>
       <h1>Ứng dụng quản lý task</h1>
@@ -45,7 +94,7 @@ const HeaderUser = () => {
           <div style={{ marginLeft: '1350px', marginTop: '-40px', fontSize: '15px' }}>
             <span>Xin chào, {userName}</span>
             <div>
-            <Link to='/' onClick={handleLogout}>Đăng xuất</Link>
+              <Link to='/' onClick={handleLogout}>Đăng xuất</Link>
             </div>
           </div>
         </>
@@ -73,6 +122,13 @@ const HeaderUser = () => {
           </li>
         </ul>
       </NavContainer>
+      <SearchContainer>
+        <input
+          // type="text" placeholder="Tìm Kiếm..." value={taskName} onChange={(e) => setTaskName(e.target.value)}
+           type="text" placeholder="Tìm Kiếm..." value={taskName} onChange={handleSearchTask} onKeyDown={handleKeyDown}
+        />
+        <button onClick={handleSearch}>Tìm Kiếm</button>
+      </SearchContainer>
     </HeaderContainer>
   );
 };

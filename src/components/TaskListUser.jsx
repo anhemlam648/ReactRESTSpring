@@ -3,7 +3,7 @@ import axios from 'axios';
 import styled from 'styled-components';
 
 const TaskListContainer = styled.div`
-    margin-top: 40px;
+    margin-top: 100px;
 `;
 
 const Table = styled.table`
