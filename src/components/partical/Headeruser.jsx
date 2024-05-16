@@ -112,7 +112,7 @@ const HeaderUser = () => {
             <Link to='/task'>Trang Task</Link>
           </li>
           <li>
-            <Link to='/detailtask'>Trang Theo Dõi Task</Link>
+            <Link to='/followtask'>Trang Theo Dõi Task</Link>
           </li>
           <li>
             <Link to='/listuser'>Trang Danh Sách User</Link>

@@ -16,7 +16,8 @@ import UpdateTask from './components/admin/UpdateTask';
 import UpdateCategory from './components/admin/UpdateCategory';
 import DetailUser from './components/admin/DetailUser';
 import SearchTask from './components/SearchTask';
-import Detailtask from './components/Detailtask';
+import Followtask from './components/Followtask';
+import DetailTaskUser from './components/DetailTaskUser';
 function App() {
   return (
     <Router>
@@ -24,7 +25,7 @@ function App() {
         <Route path="/" element={<HomeUser />} />
         <Route path="/login" element={<Login />} />
         <Route path="/task" element={<HomeTaskList />} />
-        <Route path="/detailtask" element={<Detailtask />} />
+        <Route path="/followtask" element={<Followtask />} />
         <Route path="/listuser" element={<HomeUser />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/admin" element={<HomePage />} />
@@ -39,6 +40,7 @@ function App() {
         <Route path="/updatecategory/:categoryId" element={<UpdateCategory />} />
         <Route path="/deltailuser/:userId" element={<DetailUser />} />
         <Route path="/searchtask" element={<SearchTask />} />
+        <Route path="/detailtask/:taskId" element={<DetailTaskUser />} />
       </Routes>
     </Router>
   );
