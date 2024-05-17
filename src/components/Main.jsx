@@ -2,23 +2,23 @@
 import styled from 'styled-components';
 import HeaderUser from './partical/Headeruser';
 import FooterUser from './partical/Footeruser';
-import ListUser from './ListUser';
+import Home from './Home';
 // import FormLogin from './FormLogin';
 const ContentContainer = styled.div`
   padding: 20px;
-  margin-top: -150px;
+  margin-top: -250px;
 `;
 
-const HomeUser = () => {
+const Main = () => {
   return (
     <div>
       <HeaderUser />
       <ContentContainer>
-        <ListUser />
+        <Home />
       </ContentContainer>
       <FooterUser />
     </div>
   );
 };
 
-export default HomeUser;
+export default Main;

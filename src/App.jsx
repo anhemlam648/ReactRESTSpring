@@ -19,11 +19,12 @@ import SearchTask from './components/SearchTask';
 import Followtask from './components/Followtask';
 import DetailTaskUser from './components/DetailTaskUser';
 import DetailsUser from './components/DetailsUser';
+import Main from './components/Main';
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<HomeUser />} />
+        <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
         <Route path="/task" element={<HomeTaskList />} />
         <Route path="/followtask" element={<Followtask />} />
