@@ -1,9 +1,8 @@
 
 import styled from 'styled-components';
-import Home from './Home';
 import HeaderUser from './partical/Headeruser';
 import FooterUser from './partical/Footeruser';
-
+import ListUser from './ListUser';
 // import FormLogin from './FormLogin';
 const ContentContainer = styled.div`
   padding: 20px;
@@ -15,7 +14,7 @@ const HomeUser = () => {
     <div>
       <HeaderUser />
       <ContentContainer>
-        <Home />
+        <ListUser />
       </ContentContainer>
       <FooterUser />
     </div>

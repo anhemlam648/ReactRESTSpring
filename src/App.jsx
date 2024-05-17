@@ -18,6 +18,7 @@ import DetailUser from './components/admin/DetailUser';
 import SearchTask from './components/SearchTask';
 import Followtask from './components/Followtask';
 import DetailTaskUser from './components/DetailTaskUser';
+import DetailsUser from './components/DetailsUser';
 function App() {
   return (
     <Router>
@@ -41,6 +42,7 @@ function App() {
         <Route path="/deltailuser/:userId" element={<DetailUser />} />
         <Route path="/searchtask" element={<SearchTask />} />
         <Route path="/detailtask/:taskId" element={<DetailTaskUser />} />
+        <Route path="/deltailsuser/:userId" element={<DetailsUser />} />
       </Routes>
     </Router>
   );
