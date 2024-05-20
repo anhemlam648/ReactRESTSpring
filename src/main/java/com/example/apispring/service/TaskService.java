@@ -15,4 +15,5 @@ public interface TaskService {
     TaskDto getTaskById(Long taskId);
     boolean deleteTaskById(Long taskId);
     List<TaskDto> searchTask(String taskName);
+    List<TaskDto> filterTask(String categoryName);
 }

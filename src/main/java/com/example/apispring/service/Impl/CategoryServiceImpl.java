@@ -60,6 +60,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
 
+
     public List<CategoryDto> getAllCategory(){
         List<CategoryDto> categoryDtos = categoryRepository.findAll()
                 .stream().map(CategoryMapper::mapToCategoryDto)

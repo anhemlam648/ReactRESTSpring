@@ -102,4 +102,17 @@ public class TaskController {
             }
       }
 
+      @GetMapping("/filtertask")
+      @ResponseBody
+      public ResponseEntity<List<TaskDto>> filterTask(@RequestParam String categoryName){
+        List<TaskDto> categoryTask = taskServiceimpl.filterTask(categoryName);
+          if(!categoryTask.isEmpty()){
+              return ResponseEntity.ok(categoryTask);
+          }
+          else {
+              return ResponseEntity.noContent().build();
+          }
+
+      }
+
 }

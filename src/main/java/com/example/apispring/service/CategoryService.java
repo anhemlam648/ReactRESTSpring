@@ -13,4 +13,5 @@ public interface CategoryService {
     boolean updateCategoryDto (CategoryDto categoryDto);
     CategoryDto getCategoryById(Long categoryId);
     boolean deleteCategoryById(Long categoryId);
+//    List<TaskDto> filterTask (String name);
 }
