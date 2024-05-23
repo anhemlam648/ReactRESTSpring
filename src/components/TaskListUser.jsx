@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
 const TaskListContainer = styled.div`
-    margin-top: 100px;
+    margin-top: 160px;
 `;
 
 const Table = styled.table`
@@ -31,24 +31,32 @@ const Button = styled.button`
 `;
 
 const FilterContainer = styled.div`
-    margin-top: 50px 0;
+    margin: 50px 0px;
     text-align: center;
 
-    input {
-        border-radius: 20px;
-        padding: 10px 20px;
-        font-size: 50px;
-        margin-left: 20px;
-        Background-color: #00FF00;
+    select {
+        padding: 10px 15px;
+        font-size: 16px;
+        margin-right: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #f9f9f9;
     }
 
     button {
-        border-radius: 10px;
-        padding: 5px 10px;
+        padding: 10px 15px;
         font-size: 16px;
         cursor: pointer;
         margin-left: 10px;
-    
+        border: none;
+        border-radius: 4px;
+        background-color: #007BFF;
+        color: white;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: #0056b3;
+        }
     }
 `;
 
