@@ -15,6 +15,7 @@ public class LoginMesage {
     String message;
     Boolean status;
     private String name;
+    private Long id;
     public String getMessage(){return message;}
 
     public void setMessage(String message){this.message = message;}
@@ -29,6 +30,7 @@ public class LoginMesage {
                 "message='" + message + '\'' +
                 ", status=" + status +
                 ", name='" + name + '\'' +
+                ", id=" + id +
                 '}';
     }
 

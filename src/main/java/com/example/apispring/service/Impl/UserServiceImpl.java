@@ -9,6 +9,7 @@ import com.example.apispring.mapper.UserMapper;
 import com.example.apispring.payloadreponse.LoginMesage;
 import com.example.apispring.repository.UserRepository;
 import com.example.apispring.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,10 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private HttpSession httpSession;
+
     @Override
     public boolean createUserDto(UserDto userDto) {
         User user = UserMapper.mapToUser(userDto);
@@ -40,12 +45,12 @@ public class UserServiceImpl implements UserService {
             User user = optionalUser.get();
             String encodedPassword = user.getPassword();
             if (passwordEncoder.matches(loginDto.getPassword(), encodedPassword)) {
-                return new LoginMesage("Đăng nhập thành công", true, user.getName());
+                return new LoginMesage("Đăng nhập thành công", true, user.getName(), user.getUserId());
             } else {
-                return new LoginMesage("Vui lòng kiểm tra lại tài khoản hoặc mật khẩu", false,null);
+                return new LoginMesage("Vui lòng kiểm tra lại tài khoản hoặc mật khẩu", false, null, null);
             }
         } else {
-            return new LoginMesage("Email không tìm thấy", false,null);
+            return new LoginMesage("Email không tìm thấy", false, null,null);
         }
     }
 
