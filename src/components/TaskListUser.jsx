@@ -3,8 +3,9 @@ import axios from 'axios';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
+
 const TaskListContainer = styled.div`
-    margin-top: 160px;
+    margin-top: 180px;
 `;
 
 const Table = styled.table`
@@ -87,7 +88,20 @@ const TaskList = () => {
     const detailsTask = (taskId) => {
         navigator(`/detailtask/${taskId}`);
     };
-
+    // const handleCategoryChange = (e) =>{
+    //     const selectedCategory = e.target.value;
+    //     if (selectedCategory === "all") {
+    //         axios.get('http://localhost:8080/category/list')
+    //         .then(response => {
+    //             setCategories(response.data);
+    //         })
+    //         .catch(error =>{
+    //             console.log("error list category", error);
+    //         });
+    //     }else{
+    //         setCategoryName(selectedCategory);
+    //     }
+    // }
     const FilterTask = async (e) => {
         e.preventDefault();
         if (categoryName.trim() !== '') {
@@ -101,6 +115,7 @@ const TaskList = () => {
                     setTasks(response.data);
                 } else {
                     alert('Task không tìm thấy trong danh sách');
+                    window.location.href = "/task";
                 }
             } catch (error) {
                 console.error('lỗi tìm kiếm Task theo loại:', error);
@@ -119,6 +134,13 @@ const TaskList = () => {
                  <option key={category.categoryId} value={category.categoryName}>{category.categoryName}</option>
                 ))}
                </select>
+               {/* <select value={categoryName} onChange={(e) => handleCategoryChange(e)}>
+                    <option value="">Chọn Loại</option>
+                    <option value="all">Tất Cả</option>
+                    {categories.map(category => (
+                        <option key={category.categoryId} value={category.categoryName}>{category.categoryName}</option>
+                    ))}
+                </select> */}
                 <button onClick={FilterTask}>Filter</button>
             </FilterContainer>
             <Table>
