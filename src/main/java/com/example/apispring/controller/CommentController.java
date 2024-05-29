@@ -2,6 +2,7 @@ package com.example.apispring.controller;
 
 import com.example.apispring.dto.CommentDto;
 import com.example.apispring.service.CommentService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +19,11 @@ public class CommentController {
     private CommentService commentService;
 
     @PostMapping("/add")
-    public ResponseEntity<Object> createComment(@RequestBody CommentDto commentDto) {
+    public ResponseEntity<Object> createComment(@RequestBody CommentDto commentDto, HttpSession httpSession) {
+        Long userId = (Long) httpSession.getAttribute("userId");
+        if(userId != null){
+            return ResponseEntity.ok(userId);
+        }
         boolean isSuccess = commentService.createCommentDto(commentDto);
         System.out.printf("GỌI" + isSuccess);
         if (isSuccess) {
