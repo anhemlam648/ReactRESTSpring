@@ -170,6 +170,7 @@ const DetailsTask = () => {
         if (response.status === 200) {
           setComments([...comments, response.data]);
           setNewComment('');
+          window.location.href=`/detailtask/${taskId}`; 
         }
       })
       .catch(error => {
@@ -181,7 +182,14 @@ const DetailsTask = () => {
           alert("Failed to add comment. Please try again.");
         });
     };
-
+    // function Addcomment() {
+    //   const userId = sessionStorage.getItem("userId");
+    //   if(userId){
+    //     setIsLoggedIn(true);
+    //   }else{
+    //     navigate("/login");
+    //   }
+    // }
     return (
       <Container>
         <FormContainer>
