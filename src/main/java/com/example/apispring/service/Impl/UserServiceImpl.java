@@ -2,6 +2,7 @@ package com.example.apispring.service.Impl;
 
 
 import com.example.apispring.dto.LoginDto;
+import com.example.apispring.dto.TaskDto;
 import com.example.apispring.dto.UserDto;
 import com.example.apispring.entity.User;
 import com.example.apispring.mapper.UserMapper;
@@ -77,8 +78,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean followTaskDto(Long taskDto) {
-        return false;
+    public List<TaskDto> followTaskDto(Long taskDto) {
+        return null;
     }
 
 
