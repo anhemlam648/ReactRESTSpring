@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 @Service
 public interface UserService {
     boolean createUserDto (UserDto userDto);
-//
     LoginMesage LoginUser(LoginDto loginDto);
     UserDto getUserById(Long userId);
     Boolean deleteUserById(Long userId);
+    boolean followTaskDto(Long taskDto);
 }
