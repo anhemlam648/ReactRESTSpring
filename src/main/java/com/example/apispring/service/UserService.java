@@ -14,5 +14,5 @@ public interface UserService {
     LoginMesage LoginUser(LoginDto loginDto);
     UserDto getUserById(Long userId);
     Boolean deleteUserById(Long userId);
-    List<TaskDto> followTaskDto(Long taskDto);
+
 }

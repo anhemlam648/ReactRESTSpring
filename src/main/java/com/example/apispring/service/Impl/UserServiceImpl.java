@@ -77,11 +77,6 @@ public class UserServiceImpl implements UserService {
         return false;
     }
 
-    @Override
-    public List<TaskDto> followTaskDto(Long taskDto) {
-        return null;
-    }
-
 
     public List<UserDto> getAllUser() {
         List<UserDto> userDtos = this.userRepository.findAll().stream()

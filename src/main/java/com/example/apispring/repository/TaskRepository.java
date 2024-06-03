@@ -1,5 +1,6 @@
 package com.example.apispring.repository;
 
+import com.example.apispring.dto.TaskDto;
 import com.example.apispring.entity.Task;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,4 +15,5 @@ public interface TaskRepository extends JpaRepository <Task, Long> {
 //    List<Task> findByTaskName(String taskName);
     List<Task> findByTaskNameContainingIgnoreCase(String taskName);
     List<Task> findByCategoryCategoryName(String categoryName);
+    List<Task> findByCreatorUserId (Long creatorId);
 }

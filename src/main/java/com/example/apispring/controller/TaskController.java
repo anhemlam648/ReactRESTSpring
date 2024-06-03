@@ -1,6 +1,7 @@
 package com.example.apispring.controller;
 
 import com.example.apispring.dto.TaskDto;
+import com.example.apispring.entity.Task;
 import com.example.apispring.service.Impl.TaskServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -113,6 +114,16 @@ public class TaskController {
               return ResponseEntity.noContent().build();
           }
 
+      }
+      @GetMapping("/creator/{creatorId}")
+      @ResponseBody
+      public ResponseEntity<List<TaskDto>> getTaskbyCreator(@PathVariable Long creatorId){
+        List<TaskDto> taskList = taskServiceimpl.findTasksByCreator(creatorId);
+        if(!taskList.isEmpty()){
+            return ResponseEntity.ok(taskList);
+        }else {
+            return ResponseEntity.noContent().build();
+        }
       }
 
 }

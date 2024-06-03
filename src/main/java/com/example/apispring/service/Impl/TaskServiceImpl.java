@@ -117,6 +117,15 @@ public class TaskServiceImpl implements TaskService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<TaskDto> findTasksByCreator(Long creatorId) {
+        List<Task> taskList = this.taskRepository.findByCreatorUserId(creatorId);
+        return taskList.stream()
+                .map(TaskMapper::mapToTaskDto)
+                .collect(Collectors.toList());
+    }
+
+
     public List<TaskDto> getAllTasks() {
         List<TaskDto> taskDtos = taskRepository.findAll().stream()
                 .map(TaskMapper::mapToTaskDto)
