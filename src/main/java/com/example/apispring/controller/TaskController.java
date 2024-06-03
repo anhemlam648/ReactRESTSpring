@@ -115,7 +115,7 @@ public class TaskController {
           }
 
       }
-      @GetMapping("/creator/{creatorId}")
+      @GetMapping("/creator/{userId}")
       @ResponseBody
       public ResponseEntity<List<TaskDto>> getTaskbyCreator(@PathVariable Long creatorId){
         List<TaskDto> taskList = taskServiceimpl.findTasksByCreator(creatorId);
