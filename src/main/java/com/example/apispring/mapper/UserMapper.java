@@ -4,6 +4,8 @@ package com.example.apispring.mapper;
 import com.example.apispring.dto.UserDto;
 import com.example.apispring.entity.User;
 
+import java.util.stream.Collectors;
+
 public class UserMapper {
     public static UserDto mapToUserDto(User user){
         UserDto userDto = new UserDto();

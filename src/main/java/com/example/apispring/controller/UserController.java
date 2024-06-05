@@ -77,5 +77,11 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(isSuccess);
         }
     }
+    @GetMapping("/{userId}/role")
+    public ResponseEntity<?> getUserRole(@PathVariable Long userId) {
+        // Kiểm tra vai trò của người dùng và trả về vai trò đó
+        String userRole = userServiceImpl.getUserRole(userId);
+        return ResponseEntity.ok(userRole);
+    }
 
 }
