@@ -86,6 +86,21 @@ const HeaderUser = () => {
       handleSearch(e);
     }
   };
+  const checkUserRole = async () => {
+    try {
+      const userId = sessionStorage.getItem('userId');
+      const response = await axios.get(`http://localhost:8080/user/${userId}/role`);
+      const userRole = response.data;
+      if (userRole === 'ADMIN') {
+        navigator("/admin"); 
+      } else {
+        navigator("/404"); 
+      }
+    } catch (error) {
+      console.log('Lỗi khi kiểm tra vai trò người dùng', error);
+      navigator("/404");
+    }
+  };
   return (
     <HeaderContainer>
       <h1>Ứng dụng quản lý task</h1>
@@ -93,6 +108,9 @@ const HeaderUser = () => {
         <>
           <div style={{ marginLeft: '1350px', marginTop: '-40px', fontSize: '15px' }}>
             <span>Xin chào, {userName}</span>
+            <div>
+              <Link to='/admin'onClick={checkUserRole}>Quản lý</Link>
+            </div>
             <div>
               <Link to='/' onClick={handleLogout}>Đăng xuất</Link>
             </div>

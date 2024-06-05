@@ -6,7 +6,7 @@ import Home from './Home';
 // import FormLogin from './FormLogin';
 const ContentContainer = styled.div`
   padding: 20px;
-  margin-top: -250px;
+  margin-top: -210px;
 `;
 
 const Main = () => {

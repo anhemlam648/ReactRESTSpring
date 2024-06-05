@@ -20,6 +20,7 @@ import HomeFollowTask from './components/HomeFollowTask';
 import DetailTaskUser from './components/DetailTaskUser';
 import DetailsUser from './components/DetailsUser';
 import Main from './components/Main';
+import Error from './components/404';
 function App() {
   return (
     <Router>
@@ -44,6 +45,7 @@ function App() {
         <Route path="/searchtask" element={<SearchTask />} />
         <Route path="/detailtask/:taskId" element={<DetailTaskUser />} />
         <Route path="/deltailsuser/:userId" element={<DetailsUser />} />
+        <Route path="/404" element={<Error />} />
       </Routes>
     </Router>
   );
