@@ -20,7 +20,7 @@ import HomeFollowTask from './components/HomeFollowTask';
 import DetailTaskUser from './components/DetailTaskUser';
 import DetailsUser from './components/DetailsUser';
 import Main from './components/Main';
-import Error from './components/404';
+import Error from './components/Error';
 function App() {
   return (
     <Router>
